@@ -96,7 +96,7 @@
                             </div>
                             <div class="card-body card-custom-add">
                                 <br>
-                                <a href="#"><span class="fa fa-plus-circle"></span></a>
+                                <a href="/create" method="get"><span class="fa fa-plus-circle"></span></a>
                                 <br>
                                 <br>
                             </div>

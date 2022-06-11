@@ -21,14 +21,14 @@
                     </div>
                     <p>Please fill this form and submit to add patient record to the database.</p>
                     <form action="updatePasienDoCase6.php" method="post">
-                        <input type = "hidden" name="id_pasien" value="<?php echo $id_pasien;?>">
+                        <input type = "hidden" name="id_pasien" value="<?php echo $judul;?>">
                         <div class="form-group">
                             <label>Give me a title</label>
-                            <input type="text" name="nama" class="form-control">
+                            <input type="text" name="nama" class="form-control" value="<?php echo $deskripsi;?>">
                         </div>
                         <div class="form-group">
                             <label>Spill it all here, </label>
-                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                            <textarea class="form-control" aria-label="With textarea" value="<?php echo $isi;?>"></textarea>
                         </div>
                         <input type="submit" class="btn btn-primary" name="submit" value="Safekeep">
                     </form>
