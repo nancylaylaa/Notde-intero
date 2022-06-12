@@ -19,7 +19,7 @@
                     <div class="page-header">
                         <h1>Change a Notde</h1>
                     </div>
-                    <p>Please fill this form and submit to add patient record to the database.</p>
+                    <p>We helps reduce paper usage to edit your notes that you want to change.</p>
                     <form action="updatePasienDoCase6.php" method="post">
                         <input type = "hidden" name="id_pasien" value="<?php echo $judul;?>">
                         <div class="form-group">
