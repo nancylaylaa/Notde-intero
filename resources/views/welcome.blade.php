@@ -53,7 +53,6 @@
         
     </head>
     <body>
-    
         <!-- navbar -->
         <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 navbar navbar-custom border-bottom shadow-sm">
         <h3 class="my-0 mr-md-auto font-weight-large">Notde</h3>
