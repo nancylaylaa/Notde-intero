@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class NoteController extends Controller
 {
-    function getNote(){
+    public function getNote(){
         $client = new Client();
         $response = $client->request('GET','http://192.168.56.23/api_notde/note_crud_api.php');
         $getStatus = $response->getStatusCode();
@@ -19,67 +19,70 @@ class NoteController extends Controller
         return view('welcome',["note"=>$note]);
     }
 
-    function Store(Request $request){
-        $judul = $this->input->post('judul');
-        $deskripsi = $this->input->post('deskripsi');
-        $isi = $this->input->post('isi');
+    public function Store(Request $request){
+        $judul = $request->judul;
+        $deskripsi = $request->deskripsi;
+        $isi = $request->isi;
 
-        $response = $client->request(
-            'POST','http://192.168.56.23/api_notde/note_crud_api.php', [
-                'form_params' => [
-                    'judul' => $judul,
-                    'deskripsi' => $deskripsi,
-                    'isi' => $isi
-                ]
+        $client = new client();
+        
+        $url = 'http://192.168.56.23/api_notde/note_crud_api.php';
+        
+        $response = $client->request('POST',$url, [
+            'form_params' => [
+                'judul' => $judul,
+                'deskripsi' => $deskripsi,
+                'isi' => $isi,
             ]
-        );
-
-        return redirect('welcome',['pesan'=>$response]);
+        ]);
+        if($response->getStatusCode()){
+            return redirect('/')->with('success', 'Category deleted successfully'); 
+        }
     }
 
-    function create(Request $request){
+    public function Create(Request $request){
     
         return view('/create');
     }
 
-    function delete(Request $id){
+    public function Destroy($id){
         $client = new Client();
-
-        $response = $client->request(
-            'DELETE',
-            'http://192.168.56.23/api_notde/note_crud_api.php?id=' . $_GET['id']
-        );
-        return view('welcome',['pesan'=>$response]);        
+        $url = 'http://192.168.56.23/api_notde/note_crud_api.php?id='.$id;
+        $response = $client->request('DELETE', $url);
+        if($response->getStatusCode()){
+            return redirect('/')->with('success', 'Category deleted successfully'); 
+        }
+               
     }
 
-    function update(Request $id){
-        $id = $_GET['id'];
-        $judul = $_POST['judul'];
-        $deskripsi = $_POST['deskripsi'];
-        $isi = $_POST['isi'];
-
+    public function Edit($id){
         $client = new Client();
-
-        $response = $client->request(
-            'PUT',
-            'http://192.168.56.23/api_notde/note_crud_api.php?id=' . $_GET['id'],
-            [
-                [
-
-                    'judul' => $judul,
-                    'deskripsi' => $deskripsi,
-                    'isi' => $isi
-                ]
-            ]
-        );
-        
-        $response = $client->request('GET','http://192.168.56.23/Notde-intero/getData.php');
+        $response = $client->request('GET','http://192.168.56.23/api_notde/note_crud_api.php?id='.$id);
         $getStatus = $response->getStatusCode();
         $body = $response->getBody();
 
         $note = json_decode($body,true);
         $note = $note['data'];
 
-        return redirect('welcome',['note'=>$note]); 
+        return view('edit',["note"=>$note]);
+    }
+
+    public function Update(Request $request,$id){
+        $judul = $_POST['judul'];
+        $deskripsi = $_POST['deskripsi'];
+        $isi = $_POST['isi'];
+
+        $client = new Client();
+        $url = 'http://192.168.56.23/api_notde/note_crud_api.php?id=' . $id;
+        $response = $client->request('POST',$url, [
+            'form_params' => [
+                'judul' => $judul,
+                'deskripsi' => $deskripsi,
+                'isi' => $isi,
+            ]
+        ]);
+        if($response->getStatusCode()){
+            return redirect('/')->with('success', 'Category deleted successfully'); 
+        }
     }
 }

@@ -116,10 +116,10 @@
                                     <a href="#">Show more</a>
                                 </div>
                                 <a href="/edit/{{ $data['id'] }}"><span class="fa fa-pen">&ensp;</span></a>
-                                <a href="/delete/{{ $data['id'] }}"> <span class="fa fa-trash"></span></a>
+                                <a href="/destroy/{{ $data['id'] }}"><span class="fa fa-trash" onClick="return confirm('Yakin mau dihapus?')"></span></a>
                             </div>
                             <div class="card-footer card-custom-footer">
-                                {{ $data['created_at']}}
+                                {{ $data['created_at'] }}
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                                     <br>
                                 </h4>
                             </div>
-                            <div class="card-body card-custom-add" style="height: 8.7rem;>
+                            <div class="card-body card-custom-add" style="height: 8.7rem;">
                                 <a href="/create" class="center" method="get"><span class="fa fa-plus-circle"></span></a>
                             </div>
                             <div class="card-footer card-custom-add">

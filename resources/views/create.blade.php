@@ -22,20 +22,22 @@
                         <h1>Create Note</h1>
                     </div>
                     <p></p>
-                    <form action="{{ route('store') }}" method="post">
+                    <form action="{{ route('store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                         <div class="form-group">
                             <label>Judul</label>
-                            <input type="text" name="nama" id="judul" class="form-control">
+                            <input type="text" name="judul" id="judul" class="form-control" max="13">
                         </div>
                         <div class="form-group">
                             <label>Deskripsi</label>
-                            <input type="text" name="nama" id="deskripsi" class="form-control">
+                            <input type="text" name="deskripsi" id="deskripsi" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Isi</label>
-                            <textarea class="form-control" aria-label="With textarea" id="isi"></textarea>
+                            <textarea class="form-control" name="isi" aria-label="With textarea" id="isi"></textarea>
                         </div>
-                        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                        <button type="submit" class="btn btn-dark"> Simpan </button>
+                        <a class="btn btn-danger" href="/"> Batal </a>
                     </form>
                 </div>
             </div>        

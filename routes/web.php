@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('welcome');});
-
 Route::get('/', 'NoteController@getNote')->name('welcome');
-Route::delete('/delete/id', 'NoteController@delete')->name('delete');
-Route::put('/edit/id', 'NoteController@edit')->name('edit');
-Route::get('/create', 'NoteController@create')->name('create');
-Route::post('/store', 'NoteController@store')->name('store');
+Route::get('/destroy/{id}', 'NoteController@Destroy')->name('destroy');
+Route::get('/edit/{id}', 'NoteController@Edit')->name('edit');
+Route::post('/update/{id}', 'NoteController@Update')->name('update');
+Route::get('/create', 'NoteController@Create')->name('create');
+Route::post('/store', 'NoteController@Store')->name('store');

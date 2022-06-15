@@ -20,18 +20,24 @@
                         <h1>Change a Notde</h1>
                     </div>
                     <p>We helps reduce paper usage to edit your notes that you want to change.</p>
-                    <form action="updatePasienDoCase6.php" method="post">
-                        <input type = "hidden" name="id_pasien" value="<?php echo $judul;?>">
+                    @foreach($note as $data)
+                    <form action="/update/{{ $data['id'] }}" method="post" enctype="multipart/form-data">
+                    @csrf
                         <div class="form-group">
-                            <label>Give me a title</label>
-                            <input type="text" name="nama" class="form-control" value="<?php echo $deskripsi;?>">
+                            <label>Judul</label>
+                            <input type="text" class="form-control" name="judul" max="13" value="{{ $data['judul'] }}">
                         </div>
                         <div class="form-group">
-                            <label>Spill it all here, </label>
-                            <textarea class="form-control" aria-label="With textarea" value="<?php echo $isi;?>"></textarea>
+                            <label>Deskripsi</label>
+                            <input type="text" name="deskripsi" class="form-control" value="{{ $data['deskripsi'] }}">
                         </div>
-                        <input type="submit" class="btn btn-primary" name="submit" value="Safekeep">
+                        <div class="form-group">
+                            <label>Isi Note</label>
+                            <textarea class="form-control" name="isi">{{ $data['isi'] }}</textarea>
+                        </div>
+                        <input type="submit" class="btn btn-primary" name="submit" value="Update">
                     </form>
+                    @endforeach
                 </div>
             </div>        
         </div>
